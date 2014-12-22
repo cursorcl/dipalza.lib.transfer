@@ -19,22 +19,9 @@ import com.grupo.biblioteca.server.events.Notifier;
 public class ConnectionClient extends Notifier implements Runnable, IEmmiter
 {
 	static Logger log = Logger.getLogger(ConnectionClient.class.getName());
-	/**
-	 * @uml.property  name="objectOutput"
-	 */
 	private ObjectOutputStream objectOutput = null;
-	/**
-	 * @uml.property  name="objectIntput"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="com.grupo.biblioteca.MessageToTransmit"
-	 */
 	private ObjectInputStream objectIntput = null;
-	/**
-	 * @uml.property  name="socketClient"
-	 */
 	private Socket socketClient = null;
-	/**
-	 * @uml.property  name="alive"
-	 */
 	private boolean alive = true;
 
 	public ConnectionClient(String ip)
@@ -189,8 +176,14 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter
 			}
 			catch (IOException ex)
 			{
+			  ex.printStackTrace();
 				this.alive = false;
-				log.error("Conexi�n cerrada  desde el cliente.");
+				log.error("Conexión cerrada  desde el cliente.");
+				log.fatal(ex.getLocalizedMessage());
+				for(StackTraceElement stEl: ex.getStackTrace())
+				{
+				  log.fatal(stEl.toString());
+				}
 			}
 			catch (ClassNotFoundException e)
 			{
@@ -257,11 +250,11 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter
 		{
 			this.alive = false;
 			this.socketClient.close();
-			log.debug("Conexi�n cerrada");
+			log.debug("Conexión cerrada");
 		}
 		catch (IOException e)
 		{
-			log.error("Error al cerrar la conexi�n.");
+			log.error("Error al cerrar la conexión.");
 		}
 	}
 

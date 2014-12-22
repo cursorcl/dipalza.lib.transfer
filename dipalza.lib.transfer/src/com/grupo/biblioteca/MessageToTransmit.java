@@ -17,7 +17,8 @@ import com.grupo.basedatos.Producto;
 import com.grupo.basedatos.itfz.ADatosBasicos;
 
 public class MessageToTransmit extends ADatosBasicos {
-	/**
+//  private static final long serialVersionUID = 1L;
+  /**
 	 * @uml.property  name="type"
 	 * @uml.associationEnd  
 	 */
@@ -67,7 +68,6 @@ public class MessageToTransmit extends ADatosBasicos {
 
 	/**
 	 * @return
-	 * @uml.property  name="data"
 	 */
 	public DatosBasicos getData() {
 		return data;
@@ -75,7 +75,6 @@ public class MessageToTransmit extends ADatosBasicos {
 
 	/**
 	 * @param data
-	 * @uml.property  name="data"
 	 */
 	public void setData(DatosBasicos data) {
 		this.data = data;
@@ -124,6 +123,10 @@ public class MessageToTransmit extends ADatosBasicos {
 			case MSG_VECTORPRODUCTOS:
 				data = new VectorProductos();
 				break;
+        case MSG_VECTORVENTAS:
+          break;
+        default:
+          break;
 			}
 			if(data != null) {
 				data.decode(inputStream);
