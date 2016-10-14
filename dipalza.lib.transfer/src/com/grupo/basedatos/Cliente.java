@@ -8,49 +8,16 @@ import java.io.IOException;
 
 public class Cliente extends ADatosBasicos
 {
-  /**
- * @uml.property  name="rut"
- */
 private String rut;
-  /**
- * @uml.property  name="razonSocial"
- */
 private String razonSocial;
-  /**
- * @uml.property  name="comuna"
- */
 private String comuna;
-  /**
- * @uml.property  name="direccion"
- */
 private String direccion;
-  /**
- * @uml.property  name="ciudad"
- */
 private String ciudad;
-  /**
- * @uml.property  name="telefono"
- */
 private String telefono;
-  /**
- * @uml.property  name="borrado"
- */
 private boolean borrado;
-  /**
- * @uml.property  name="estado"
- */
 private int estado = 0;
-  /**
- * @uml.property  name="vendedor"
- */
 private String vendedor = "000";
-  /**
- * @uml.property  name="ruta"
- */
 private String ruta = "000";
-  /**
- * @uml.property  name="codigo"
- */
 private String codigo;
 
   public Cliente()
@@ -58,82 +25,33 @@ private String codigo;
     this.codigo = "   ";
   }
 
-  /**
- * @return
- * @uml.property  name="rut"
- */
 public String getRut() {
     return this.rut;
   }
-
-  /**
- * @return
- * @uml.property  name="razonSocial"
- */
 public String getRazonSocial() {
     return this.razonSocial;
   }
-
-  /**
- * @return
- * @uml.property  name="direccion"
- */
 public String getDireccion() {
     return this.direccion;
   }
-
-  /**
- * @return
- * @uml.property  name="ciudad"
- */
 public String getCiudad() {
     return this.ciudad;
   }
-
-  /**
- * @return
- * @uml.property  name="telefono"
- */
 public String getTelefono() {
     return this.telefono;
   }
-
-  /**
- * @param rut
- * @uml.property  name="rut"
- */
 public void setRut(String rut) {
     this.rut = rut;
   }
-
-  /**
- * @param razonSocial
- * @uml.property  name="razonSocial"
- */
 public void setRazonSocial(String razonSocial) {
     this.razonSocial = razonSocial;
   }
-
-  /**
- * @param ciudad
- * @uml.property  name="ciudad"
- */
 public void setCiudad(String ciudad) {
     this.ciudad = ciudad;
   }
-
-  /**
- * @param direccion
- * @uml.property  name="direccion"
- */
 public void setDireccion(String direccion) {
     this.direccion = direccion;
   }
-
-  /**
- * @param telefono
- * @uml.property  name="telefono"
- */
 public void setTelefono(String telefono) {
     this.telefono = telefono;
   }

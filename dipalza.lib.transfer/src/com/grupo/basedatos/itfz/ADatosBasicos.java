@@ -6,7 +6,8 @@ import java.io.DataInputStream;
 import com.grupo.biblioteca.DatosBasicos;
 
 public abstract class ADatosBasicos implements DatosBasicos {
-	
+  private static final long serialVersionUID = 1L;
+  
 	public void decode(byte[] buffer) {
 		ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
 		DataInputStream inputStream = new DataInputStream(bais);

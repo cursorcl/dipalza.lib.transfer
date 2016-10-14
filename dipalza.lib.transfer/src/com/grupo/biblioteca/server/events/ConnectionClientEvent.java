@@ -18,23 +18,10 @@ import java.util.EventObject;
 public class ConnectionClientEvent extends EventObject
 {
 
-    /** Field description */
     private static final long serialVersionUID = 1L;
 
-    /**
-	 * Field description
-	 * @uml.property  name="client"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
     private ConnectionClient client;
 
-    /**
-     * Constructs ...
-     *
-     *
-     * @param source
-     * @param client
-     */
     public ConnectionClientEvent(Object source, ConnectionClient client)
     {
         super(source);

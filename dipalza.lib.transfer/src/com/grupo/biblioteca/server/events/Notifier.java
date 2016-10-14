@@ -6,10 +6,6 @@ import java.util.List;
 
 public abstract class Notifier {
 
-	/**
-	 * @uml.property  name="notificables"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="com.grupo.biblioteca.server.events.Notificable"
-	 */
 	private List<Notificable> notificables;
 
 	public Notifier() {

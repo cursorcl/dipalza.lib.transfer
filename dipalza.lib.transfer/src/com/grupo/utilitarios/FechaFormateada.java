@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class FechaFormateada extends Date {
-	private static final int[] DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  private static final long serialVersionUID = 1L;
+  private static final int[] DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 
 	public FechaFormateada() {

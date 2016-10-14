@@ -6,47 +6,19 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class Producto extends ADatosBasicos
-{
-  /**
- * @uml.property  name="articulo"
- */
-private String articulo;
-  /**
- * @uml.property  name="idProducto"
- */
-private short idProducto;
-  /**
- * @uml.property  name="nombre"
- */
-private String nombre;
-  /**
- * @uml.property  name="stock"
- */
-private float stock;
-  /**
- * @uml.property  name="precio"
- */
-private float precio;
-  /**
- * @uml.property  name="unidad"
- */
-private String unidad;
-  /**
- * @uml.property  name="proveedor"
- */
-private String proveedor;
-  /**
- * @uml.property  name="costo"
- */
-private float costo;
-  /**
- * @uml.property  name="ila"
- */
-private float ila;
+public class Producto extends ADatosBasicos {
+  private static final long serialVersionUID = 1L;
+  private String articulo;
+  private short idProducto;
+  private String nombre;
+  private float stock;
+  private float precio;
+  private String unidad;
+  private String proveedor;
+  private float costo;
+  private float ila;
 
-  public Producto()
-  {
+  public Producto() {
     this.articulo = "";
     this.idProducto = 0;
     this.nombre = "Producto";
@@ -58,8 +30,8 @@ private float ila;
     this.ila = 0.0F;
   }
 
-  public Producto(String articulo, short id, String nombre, float stock, float precio, String unidad, String prov, float costo, float ila)
-  {
+  public Producto(String articulo, short id, String nombre, float stock, float precio,
+      String unidad, String prov, float costo, float ila) {
     this.articulo = articulo;
     this.idProducto = id;
     this.nombre = nombre;
@@ -71,104 +43,54 @@ private float ila;
     this.ila = ila;
   }
 
-  /**
- * @return
- * @uml.property  name="idProducto"
- */
-public short getIdProducto() {
+  public short getIdProducto() {
     return this.idProducto;
   }
 
-  /**
- * @return
- * @uml.property  name="nombre"
- */
-public String getNombre() {
+  public String getNombre() {
     return this.nombre;
   }
-
-  /**
- * @return
- * @uml.property  name="precio"
- */
-public float getPrecio() {
+  public float getPrecio() {
     return this.precio;
   }
 
-  /**
- * @return
- * @uml.property  name="proveedor"
- */
-public String getProveedor() {
+  public String getProveedor() {
     return this.proveedor;
   }
 
-  /**
- * @return
- * @uml.property  name="stock"
- */
-public float getStock() {
+  public float getStock() {
     return this.stock;
   }
 
-  /**
- * @return
- * @uml.property  name="unidad"
- */
-public String getUnidad() {
+  public String getUnidad() {
     return this.unidad;
   }
 
-  /**
- * @param idProducto
- * @uml.property  name="idProducto"
- */
-public void setIdProducto(short idProducto) {
+  public void setIdProducto(short idProducto) {
     this.idProducto = idProducto;
   }
 
-  /**
- * @param nombre
- * @uml.property  name="nombre"
- */
-public void setNombre(String nombre) {
+  public void setNombre(String nombre) {
     this.nombre = nombre;
   }
 
-  /**
- * @param precio
- * @uml.property  name="precio"
- */
-public void setPrecio(float precio) {
+  public void setPrecio(float precio) {
     this.precio = precio;
   }
 
-  /**
- * @param proveedor
- * @uml.property  name="proveedor"
- */
-public void setProveedor(String proveedor) {
+  public void setProveedor(String proveedor) {
     this.proveedor = proveedor;
   }
 
-  /**
- * @param stock
- * @uml.property  name="stock"
- */
-public void setStock(float stock) {
+  public void setStock(float stock) {
     this.stock = stock;
   }
 
-  /**
- * @param unidad
- * @uml.property  name="unidad"
- */
-public void setUnidad(String unidad) {
+  public void setUnidad(String unidad) {
     this.unidad = unidad;
   }
 
-  public void decode(DataInputStream inputStream)
-  {
+  public void decode(DataInputStream inputStream) {
     try {
       this.articulo = inputStream.readUTF();
       this.idProducto = inputStream.readShort();
@@ -204,57 +126,32 @@ public void setUnidad(String unidad) {
     return buffer;
   }
 
-  public String toString()
-  {
+  public String toString() {
     String retValue = this.nombre.trim();
     return retValue;
   }
 
-  /**
- * @return
- * @uml.property  name="articulo"
- */
-public String getArticulo() {
+  public String getArticulo() {
     return this.articulo;
   }
 
-  /**
- * @param articulo
- * @uml.property  name="articulo"
- */
-public void setArticulo(String articulo) {
+  public void setArticulo(String articulo) {
     this.articulo = articulo;
   }
 
-  /**
- * @return
- * @uml.property  name="costo"
- */
-public float getCosto() {
+  public float getCosto() {
     return this.costo;
   }
 
-  /**
- * @param costo
- * @uml.property  name="costo"
- */
-public void setCosto(float costo) {
+  public void setCosto(float costo) {
     this.costo = costo;
   }
 
-  /**
- * @return
- * @uml.property  name="ila"
- */
-public float getIla() {
+  public float getIla() {
     return this.ila;
   }
 
-  /**
- * @param ila
- * @uml.property  name="ila"
- */
-public void setIla(float ila) {
+  public void setIla(float ila) {
     this.ila = ila;
   }
 }

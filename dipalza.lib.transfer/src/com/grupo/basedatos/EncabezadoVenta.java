@@ -10,43 +10,14 @@ import java.util.Date;
 
 public class EncabezadoVenta extends ADatosBasicos
 {
-  /**
- * @uml.property  name="nombreCliente"
- */
 private String nombreCliente = null;
-  /**
- * @uml.property  name="fecha"
- * @uml.associationEnd  multiplicity="(1 1)"
- */
 private FechaFormateada fecha;
-  /**
- * @uml.property  name="condicionVenta"
- */
 private byte condicionVenta;
-  /**
- * @uml.property  name="rut"
- */
 private String rut;
-  /**
- * @uml.property  name="neto"
- */
 private float neto;
-  /**
- * @uml.property  name="porcentajeIva"
- */
 private float porcentajeIva;
-  /**
- * @uml.property  name="vendedor"
- */
 private String vendedor;
-  /**
- * @uml.property  name="droped"
- */
 private boolean droped = false;
-
-  /**
- * @uml.property  name="codigoCliente"
- */
 private String codigoCliente = "";
 
   public EncabezadoVenta(String nombreCliente, String rut, Date fecha, byte condicionVenta, float neto, float iva, String vendedor, String codigoCliente)

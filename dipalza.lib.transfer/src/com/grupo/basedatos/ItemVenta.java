@@ -6,201 +6,176 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ItemVenta extends ADatosBasicos
-{
-  /**
- * @uml.property  name="codigoProducto"
- */
-private short codigoProducto;
-  /**
- * @uml.property  name="articulo"
- */
-private String articulo;
-  /**
- * @uml.property  name="cantidad"
- */
-private float cantidad;
-  /**
- * @uml.property  name="neto"
- */
-private float neto;
-  /**
- * @uml.property  name="descuento"
- */
-private float descuento;
-  /**
- * @uml.property  name="ila"
- */
-private float ila;
-  /**
- * @uml.property  name="oldCantidad"
- */
-private float oldCantidad = 0.0F;
+public class ItemVenta extends ADatosBasicos {
+	private static final long serialVersionUID = 1L;
+	private short codigoProducto;
+	private String articulo;
+	private float cantidad;
+	private float neto;
+	private float descuento;
+	private float ila;
+	private float oldCantidad = 0.0F;
+	private float precio;
 
-  public ItemVenta()
-  {
-    this.codigoProducto = 0;
-    this.articulo = "";
-    this.cantidad = 0.0F;
-    this.neto = 0.0F;
-    this.descuento = 0.0F;
-    this.ila = 0.0F;
-  }
+	public ItemVenta() {
+		this.codigoProducto = 0;
+		this.articulo = "";
+		this.cantidad = 0.0F;
+		this.neto = 0.0F;
+		this.descuento = 0.0F;
+		this.ila = 0.0F;
+		this.precio = 0f;
+	}
 
-  public ItemVenta(short codigo, String articulo, float cantidad, float total, float descuento, float ila)
-  {
-    this.codigoProducto = codigo;
-    this.articulo = articulo;
-    this.cantidad = cantidad;
-    this.neto = total;
-    this.descuento = descuento;
-    this.ila = ila;
-  }
+	public ItemVenta(short codigo, String articulo, float cantidad, float total, float descuento, float ila,
+			float precio) {
 
-  /**
- * @return
- * @uml.property  name="cantidad"
- */
-public float getCantidad() {
-    return this.cantidad;
-  }
+		this.codigoProducto = codigo;
+		this.articulo = articulo;
+		this.cantidad = cantidad;
+		this.neto = total;
+		this.descuento = descuento;
+		this.ila = ila;
+		this.precio = precio;
+	}
 
-  /**
- * @return
- * @uml.property  name="codigoProducto"
- */
-public short getCodigoProducto() {
-    return this.codigoProducto;
-  }
+	/**
+	 * @return
+	 */
+	public float getCantidad() {
+		return this.cantidad;
+	}
 
-  /**
- * @return
- * @uml.property  name="neto"
- */
-public float getNeto() {
-    return this.neto;
-  }
+	/**
+	 * @return
+	 */
+	public short getCodigoProducto() {
+		return this.codigoProducto;
+	}
 
-  /**
- * @return
- * @uml.property  name="ila"
- */
-public float getIla() {
-    return this.ila;
-  }
+	/**
+	 * @return
+	 */
+	public float getNeto() {
+		return this.neto;
+	}
 
-  /**
- * @param ila
- * @uml.property  name="ila"
- */
-public void setIla(float ila) {
-    this.ila = ila;
-  }
+	/**
+	 * @return
+	 */
+	public float getIla() {
+		return this.ila;
+	}
 
-  /**
- * @param cantidad
- * @uml.property  name="cantidad"
- */
-public void setCantidad(float cantidad) {
-    this.cantidad = cantidad;
-  }
+	/**
+	 * @param ila
+	 */
+	public void setIla(float ila) {
+		this.ila = ila;
+	}
 
-  /**
- * @param codigoProducto
- * @uml.property  name="codigoProducto"
- */
-public void setCodigoProducto(short codigoProducto) {
-    this.codigoProducto = codigoProducto;
-  }
+	/**
+	 * @param cantidad
+	 */
+	public void setCantidad(float cantidad) {
+		this.cantidad = cantidad;
+	}
 
-  /**
- * @param total
- * @uml.property  name="neto"
- */
-public void setNeto(float total) {
-    this.neto = total;
-  }
+	/**
+	 * @param codigoProducto
+	 */
+	public void setCodigoProducto(short codigoProducto) {
+		this.codigoProducto = codigoProducto;
+	}
 
-  /**
- * @return
- * @uml.property  name="articulo"
- */
-public String getArticulo() {
-    return this.articulo;
-  }
+	/**
+	 * @param total
+	 */
+	public void setNeto(float total) {
+		this.neto = total;
+	}
 
-  /**
- * @param articulo
- * @uml.property  name="articulo"
- */
-public void setArticulo(String articulo) {
-    this.articulo = articulo;
-  }
+	/**
+	 * @return
+	 */
+	public String getArticulo() {
+		return this.articulo;
+	}
 
-  /**
- * @return
- * @uml.property  name="descuento"
- */
-public float getDescuento() {
-    return this.descuento;
-  }
+	/**
+	 * @param articulo
+	 */
+	public void setArticulo(String articulo) {
+		this.articulo = articulo;
+	}
 
-  /**
- * @param descuento
- * @uml.property  name="descuento"
- */
-public void setDescuento(float descuento) {
-    this.descuento = descuento;
-  }
+	/**
+	 * @return
+	 */
+	public float getDescuento() {
+		return this.descuento;
+	}
 
-  /**
- * @return
- * @uml.property  name="oldCantidad"
- */
-public float getOldCantidad() {
-    return this.oldCantidad;
-  }
+	/**
+	 * @param descuento
+	 */
+	public void setDescuento(float descuento) {
+		this.descuento = descuento;
+	}
 
-  /**
- * @param oldCantidad
- * @uml.property  name="oldCantidad"
- */
-public void setOldCantidad(float oldCantidad) {
-    this.oldCantidad = oldCantidad;
-  }
+	/**
+	 * @return
+	 */
+	public float getOldCantidad() {
+		return this.oldCantidad;
+	}
 
-  public String toString() {
-    return this.articulo + "  " + this.cantidad;
-  }
+	/**
+	 * @param oldCantidad
+	 */
+	public void setOldCantidad(float oldCantidad) {
+		this.oldCantidad = oldCantidad;
+	}
 
-  public void decode(DataInputStream inputStream)
-  {
-    try
-    {
-      setCodigoProducto(inputStream.readShort());
-      setCantidad(inputStream.readFloat());
-      setNeto(inputStream.readFloat());
-      setDescuento(inputStream.readFloat());
-      setArticulo(inputStream.readUTF());
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-  }
+	 public final float getPrecio() {
+	 return precio;
+	 }
+	
+	public final void setPrecio(float precio) {
+		this.precio = precio;
+	}
 
-  public byte[] encode()
-  {
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    DataOutputStream outputStream = new DataOutputStream(baos);
-    try {
-      outputStream.writeShort(getCodigoProducto());
-      outputStream.writeFloat(getCantidad());
-      outputStream.writeFloat(getNeto());
-      outputStream.writeFloat(getDescuento());
-      outputStream.writeUTF(getArticulo());
-    } catch (IOException ioe) {
-      ioe.printStackTrace();
-    }
-    byte[] buffer = baos.toByteArray();
-    return buffer;
-  }
+	public String toString() {
+		return this.articulo + "  " + this.cantidad;
+	}
+
+	public void decode(DataInputStream inputStream) {
+		try {
+			setCodigoProducto(inputStream.readShort());
+			setCantidad(inputStream.readFloat());
+			setNeto(inputStream.readFloat());
+			setDescuento(inputStream.readFloat());
+			setArticulo(inputStream.readUTF());
+			// setPrecio(inputStream.readFloat());
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public byte[] encode() {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		DataOutputStream outputStream = new DataOutputStream(baos);
+		try {
+			outputStream.writeShort(getCodigoProducto());
+			outputStream.writeFloat(getCantidad());
+			outputStream.writeFloat(getNeto());
+			outputStream.writeFloat(getDescuento());
+			outputStream.writeUTF(getArticulo());
+			// outputStream.writeFloat(getPrecio());
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+		byte[] buffer = baos.toByteArray();
+		return buffer;
+	}
 }

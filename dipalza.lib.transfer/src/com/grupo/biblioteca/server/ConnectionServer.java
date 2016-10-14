@@ -1,7 +1,6 @@
 package com.grupo.biblioteca.server;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
@@ -23,43 +22,21 @@ import com.grupo.biblioteca.server.events.Notifier;
 public class ConnectionServer extends Notifier implements Runnable, Notificable {
 
   static Logger log = Logger.getLogger(ConnectionServer.class);
-  /**
-   * @uml.property name="clientSocket"
-   */
   private Socket clientSocket;
-  /**
-   * @uml.property name="serverSocket"
-   */
   private ServerSocket serverSocket;
-  /**
-   * @uml.property name="alive"
-   */
   private boolean alive = true;
   private String bind = "127.0.0.1";
-  private String eth = "eth0";
 
-  public ConnectionServer() {
-    InputStream inStream = ConnectionServer.class.getResourceAsStream("/sqlserver.properties");
-    if (inStream != null) {
-      try {
-        Properties props = new Properties();
-        props.load(inStream);
-        bind = props.getProperty("bind", bind);
-        props = null;
-        inStream.close();
-      } catch (IOException e) {
-        log.error("Se ha establecido la dirección IP por defecto para escuchar");
-      }
-
-    }
+  public ConnectionServer(Properties props) {
+    bind = props.getProperty("bind", bind);
     start();
   }
 
   public void run() {
-    InetAddress thisIp =null;
+    InetAddress thisIp = null;
     log.debug("Inicializando puerta 5500");
     try {
-      
+
       Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
       while (en.hasMoreElements()) {
         NetworkInterface ni = en.nextElement();
@@ -75,13 +52,12 @@ public class ConnectionServer extends Notifier implements Runnable, Notificable 
           break;
         }
       }
-      if(thisIp == null)
-      {
+      if (thisIp == null) {
         thisIp = InetAddress.getByName(bind);
       }
 
       this.serverSocket = new ServerSocket(5500, 5, thisIp);
-      notify(new ConnectionServerEvent(this, serverSocket)); //Notificamos la conexion
+      notify(new ConnectionServerEvent(this, serverSocket)); // Notificamos la conexion
       log.debug("Escuchando puesrta 5500.");
     } catch (IOException ex) {
       ex.printStackTrace();
