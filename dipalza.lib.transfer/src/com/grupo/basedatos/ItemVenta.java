@@ -156,7 +156,7 @@ public class ItemVenta extends ADatosBasicos {
 			setNeto(inputStream.readFloat());
 			setDescuento(inputStream.readFloat());
 			setArticulo(inputStream.readUTF());
-			// setPrecio(inputStream.readFloat());
+			setPrecio(inputStream.readFloat());
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -171,7 +171,7 @@ public class ItemVenta extends ADatosBasicos {
 			outputStream.writeFloat(getNeto());
 			outputStream.writeFloat(getDescuento());
 			outputStream.writeUTF(getArticulo());
-			// outputStream.writeFloat(getPrecio());
+			outputStream.writeFloat(getPrecio());
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
