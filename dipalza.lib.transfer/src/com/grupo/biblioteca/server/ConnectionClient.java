@@ -14,7 +14,7 @@ import java.io.ObjectOutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Vector;
+import java.util.List;
 
 public class ConnectionClient extends Notifier implements Runnable, IEmmiter {
     static Logger log = Logger.getLogger(ConnectionClient.class.getName());
@@ -136,7 +136,7 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter {
                     processData(null);
                 }
             } catch (IOException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
                 this.alive = false;
                 log.error("Conexión cerrada  desde el cliente.");
                 log.fatal(ex.getLocalizedMessage());
@@ -144,6 +144,7 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter {
                     log.fatal(stEl.toString());
                 }
             } catch (ClassNotFoundException e) {
+            	e.printStackTrace();
                 this.alive = false;
                 log.error("Conexión cerrada  desde el cliente.");
                 log.fatal(e.getLocalizedMessage());
@@ -172,7 +173,7 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter {
         return result;
     }
 
-    public boolean send(Vector<MessageToTransmit> datos) {
+    public boolean send(List<MessageToTransmit> datos) {
         boolean result = true;
         try {
             for (int n = 0; n < datos.size(); ++n) {

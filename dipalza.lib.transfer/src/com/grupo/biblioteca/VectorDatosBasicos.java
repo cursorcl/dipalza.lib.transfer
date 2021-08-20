@@ -3,20 +3,18 @@ package com.grupo.biblioteca;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.grupo.basedatos.itfz.ADatosBasicos;
 
 public abstract class VectorDatosBasicos<T extends ADatosBasicos> extends ADatosBasicos {
 
-	/**
-	 * @uml.property  name="vector"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="com.grupo.basedatos.itfz.ADatosBasicos"
-	 */
-	Vector<T> vector;
+	private static final long serialVersionUID = 1L;
+	List<T> vector;
 
 	public VectorDatosBasicos() {
-		vector = new Vector<T>();
+		vector = new ArrayList<T>();
 	}
 	
 	public void add(T value) {
@@ -36,10 +34,10 @@ public abstract class VectorDatosBasicos<T extends ADatosBasicos> extends ADatos
 	}
 	
 	public T elementAt(int index) {
-		return vector.elementAt(index);
+		return vector.get(index);
 	}
 	
-	public Vector<T> asVector() {
+	public List<T> asVector() {
 		return vector;
 	}
 	

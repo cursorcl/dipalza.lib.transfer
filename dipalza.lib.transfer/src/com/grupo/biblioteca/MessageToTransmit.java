@@ -168,6 +168,8 @@ public class MessageToTransmit extends ADatosBasicos {
         case MSG_ESPECIALES:
           data = new Especiales();
           break;
+	default:
+		break;
       }
       if (data != null) {
         data.decode(inputStream);

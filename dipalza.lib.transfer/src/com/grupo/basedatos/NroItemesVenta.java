@@ -9,9 +9,7 @@ import com.grupo.basedatos.itfz.ADatosBasicos;
 
 public class NroItemesVenta extends ADatosBasicos {
 
-	/**
-	 * @uml.property  name="nroItemesVenta"
-	 */
+	private static final long serialVersionUID = 1L;
 	private int nroItemesVenta;
 
 	public NroItemesVenta() {
@@ -21,18 +19,10 @@ public class NroItemesVenta extends ADatosBasicos {
 		this.nroItemesVenta = nroItemesVenta;
 	}
 
-	/**
-	 * @return
-	 * @uml.property  name="nroItemesVenta"
-	 */
 	public int getNroItemesVenta() {
 		return this.nroItemesVenta;
 	}
 
-	/**
-	 * @param nroItemesVenta
-	 * @uml.property  name="nroItemesVenta"
-	 */
 	public void setNroItemesVenta(int nroItemesVenta) {
 		this.nroItemesVenta = nroItemesVenta;
 	}

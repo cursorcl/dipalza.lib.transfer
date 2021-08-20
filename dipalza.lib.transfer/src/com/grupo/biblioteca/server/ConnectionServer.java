@@ -26,9 +26,11 @@ public class ConnectionServer extends Notifier implements Runnable, Notificable 
   private ServerSocket serverSocket;
   private boolean alive = true;
   private String bind = "127.0.0.1";
+  private String eth = "eth0";
 
   public ConnectionServer(Properties props) {
     bind = props.getProperty("bind", bind);
+    eth = props.getProperty("eth", eth);
     start();
   }
 
@@ -41,7 +43,7 @@ public class ConnectionServer extends Notifier implements Runnable, Notificable 
       while (en.hasMoreElements()) {
         NetworkInterface ni = en.nextElement();
         List<InterfaceAddress> list = ni.getInterfaceAddresses();
-        if (ni.getName().equals("eth0")) {
+        if (ni.getName().equals(eth) || ni.getInetAddresses().toString().equals(bind)) {
           Iterator<InterfaceAddress> it = list.iterator();
           while (it.hasNext()) {
             InterfaceAddress ia = it.next();

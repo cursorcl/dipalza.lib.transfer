@@ -1,10 +1,10 @@
 package com.grupo.biblioteca;
 
-import java.util.Vector;
+import java.util.List;
 
 public abstract interface IEmmiter
 {
   public abstract boolean send(MessageToTransmit paramMessageToTransmit);
 
-  public abstract boolean send(Vector<MessageToTransmit> paramVector);
+  public abstract boolean send(List<MessageToTransmit> paramVector);
 }
