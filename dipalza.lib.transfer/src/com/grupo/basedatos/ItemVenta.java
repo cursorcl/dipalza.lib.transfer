@@ -1,10 +1,6 @@
 package com.grupo.basedatos;
 
 import com.grupo.basedatos.itfz.ADatosBasicos;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class ItemVenta extends ADatosBasicos {
 	private static final long serialVersionUID = 1L;
@@ -149,33 +145,5 @@ public class ItemVenta extends ADatosBasicos {
 		return this.articulo + "  " + this.cantidad;
 	}
 
-	public void decode(DataInputStream inputStream) {
-		try {
-			setCodigoProducto(inputStream.readShort());
-			setCantidad(inputStream.readFloat());
-			setNeto(inputStream.readFloat());
-			setDescuento(inputStream.readFloat());
-			setArticulo(inputStream.readUTF());
-			setPrecio(inputStream.readFloat());
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public byte[] encode() {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream outputStream = new DataOutputStream(baos);
-		try {
-			outputStream.writeShort(getCodigoProducto());
-			outputStream.writeFloat(getCantidad());
-			outputStream.writeFloat(getNeto());
-			outputStream.writeFloat(getDescuento());
-			outputStream.writeUTF(getArticulo());
-			outputStream.writeFloat(getPrecio());
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		byte[] buffer = baos.toByteArray();
-		return buffer;
-	}
+	
 }

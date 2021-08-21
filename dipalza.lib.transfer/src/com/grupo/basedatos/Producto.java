@@ -1,10 +1,6 @@
 package com.grupo.basedatos;
 
 import com.grupo.basedatos.itfz.ADatosBasicos;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class Producto extends ADatosBasicos {
   private static final long serialVersionUID = 1L;
@@ -90,41 +86,6 @@ public class Producto extends ADatosBasicos {
     this.unidad = unidad;
   }
 
-  public void decode(DataInputStream inputStream) {
-    try {
-      this.articulo = inputStream.readUTF();
-      this.idProducto = inputStream.readShort();
-      this.nombre = inputStream.readUTF();
-      this.precio = inputStream.readFloat();
-      this.stock = inputStream.readFloat();
-      this.unidad = inputStream.readUTF();
-      this.proveedor = inputStream.readUTF();
-      this.costo = inputStream.readFloat();
-      this.ila = inputStream.readFloat();
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-  }
-
-  public byte[] encode() {
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    DataOutputStream outputStream = new DataOutputStream(baos);
-    try {
-      outputStream.writeUTF(this.articulo);
-      outputStream.writeShort(this.idProducto);
-      outputStream.writeUTF(this.nombre);
-      outputStream.writeFloat(this.precio);
-      outputStream.writeFloat(this.stock);
-      outputStream.writeUTF(this.unidad);
-      outputStream.writeUTF(this.proveedor);
-      outputStream.writeFloat(this.costo);
-      outputStream.writeFloat(this.ila);
-    } catch (IOException ioe) {
-      ioe.printStackTrace();
-    }
-    byte[] buffer = baos.toByteArray();
-    return buffer;
-  }
 
   public String toString() {
     String retValue = this.nombre.trim();

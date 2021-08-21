@@ -1,14 +1,11 @@
 package com.grupo.basedatos;
 
-import com.grupo.basedatos.itfz.ADatosBasicos;
-import com.grupo.exception.DiaSemanaInvalido;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+
+import com.grupo.basedatos.itfz.ADatosBasicos;
+import com.grupo.exception.DiaSemanaInvalido;
 
 public class IDUnit extends ADatosBasicos {
 	private static final long serialVersionUID = 1L;
@@ -107,29 +104,6 @@ public class IDUnit extends ADatosBasicos {
 		this.idRutaAdicional = new String(idRutaAdicional);
 	}
 
-	public void decode(DataInputStream inputStream) {
-		try {
-			setIdUnit(inputStream.readUTF());
-			setIdRuta(inputStream.readUTF());
-			setIdRutaAdicional(inputStream.readUTF());
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public byte[] encode() {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream outputStream = new DataOutputStream(baos);
-		try {
-			outputStream.writeUTF(getIdUnit());
-			outputStream.writeUTF(getIdRuta());
-			outputStream.writeUTF(getIdRutaAdicional());
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		byte[] buffer = baos.toByteArray();
-		return buffer;
-	}
 
 	public String toString() {
 		return this.idUnit + " - " + this.idRuta + " - " + this.idRutaAdicional;

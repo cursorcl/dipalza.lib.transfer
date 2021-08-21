@@ -1,10 +1,6 @@
 package com.grupo.basedatos;
 
 import com.grupo.basedatos.itfz.ADatosBasicos;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class Cliente extends ADatosBasicos {
 	private static final long serialVersionUID = 1L;
@@ -64,51 +60,12 @@ public class Cliente extends ADatosBasicos {
 		this.telefono = telefono;
 	}
 
-	public void decode(DataInputStream inputStream) {
-		try {
-			this.borrado = inputStream.readBoolean();
-			this.rut = inputStream.readUTF();
-			this.razonSocial = inputStream.readUTF();
-			this.direccion = inputStream.readUTF();
-			this.comuna = inputStream.readUTF();
-			this.ciudad = inputStream.readUTF();
-			this.telefono = inputStream.readUTF();
-			this.estado = inputStream.readByte();
-			this.vendedor = inputStream.readUTF();
-			this.ruta = inputStream.readUTF();
-			this.codigo = inputStream.readUTF();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-
+	
 	public String toString() {
 		return this.codigo + ":" + getRazonSocial().toUpperCase();
 	}
 
-	public byte[] encode() {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream outputStream = new DataOutputStream(baos);
-		try {
-			outputStream.writeBoolean(this.borrado);
-			outputStream.writeUTF(this.rut);
-			outputStream.writeUTF(this.razonSocial);
-			outputStream.writeUTF(this.direccion);
-			outputStream.writeUTF(this.comuna);
-			outputStream.writeUTF(this.ciudad);
-			outputStream.writeUTF(this.telefono);
-			outputStream.writeByte(this.estado);
-			outputStream.writeUTF(this.vendedor);
-			outputStream.writeUTF(this.ruta);
-			outputStream.writeUTF(this.codigo);
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		byte[] buffer = baos.toByteArray();
-		return buffer;
-	}
-
-	/**
+		/**
 	 * @return
 	 * @uml.property name="borrado"
 	 */

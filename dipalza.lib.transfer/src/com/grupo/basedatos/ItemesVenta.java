@@ -1,9 +1,5 @@
 package com.grupo.basedatos;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,41 +17,6 @@ public class ItemesVenta extends ADatosBasicos {
 		this.items = new ArrayList<ItemVenta>();
 	}
 
-	public void decode(DataInputStream inputStream) {
-		try {
-			int size = inputStream.readInt();
-			this.items = new ArrayList<ItemVenta>(size);
-			for (int n = 0; n < size; ++n) {
-				ItemVenta v = new ItemVenta();
-				v.setCodigoProducto(inputStream.readShort());
-				v.setCantidad(inputStream.readFloat());
-				v.setNeto(inputStream.readFloat());
-				v.setDescuento(inputStream.readFloat());
-				v.setArticulo(inputStream.readUTF());
-				this.items.add(v);
-			}
-			this.droped = inputStream.readBoolean();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public byte[] encode() {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream outputStream = new DataOutputStream(baos);
-		try {
-			outputStream.writeInt(this.items.size());
-			for (int n = 0; n < this.items.size(); ++n) {
-				ItemVenta v = (ItemVenta) this.items.get(n);
-				outputStream.write(v.encode());
-			}
-			outputStream.writeBoolean(this.droped);
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		byte[] buffer = baos.toByteArray();
-		return buffer;
-	}
 
 	public void add(ItemVenta venta, int idx) {
 		if (idx == -1) {

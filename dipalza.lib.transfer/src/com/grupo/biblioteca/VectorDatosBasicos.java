@@ -1,8 +1,5 @@
 package com.grupo.biblioteca;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,22 +37,7 @@ public abstract class VectorDatosBasicos<T extends ADatosBasicos> extends ADatos
 	public List<T> asVector() {
 		return vector;
 	}
-	
-	@Override
-	public byte[] encode() {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream outputStream = new DataOutputStream(baos);
-		try {
-			outputStream.writeInt(vector.size());
-			for(T t: vector) {
-				outputStream.write(t.encode());
-			}
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		byte[] buffer = baos.toByteArray();
-		return buffer;	
-	}
+
 
 	
 

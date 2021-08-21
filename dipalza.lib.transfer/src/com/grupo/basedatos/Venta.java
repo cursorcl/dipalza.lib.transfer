@@ -1,10 +1,5 @@
 package com.grupo.basedatos;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import com.grupo.basedatos.itfz.ADatosBasicos;
 import com.grupo.utilitarios.FechaFormateada;
 
@@ -57,26 +52,6 @@ public class Venta extends ADatosBasicos {
 	 */
 	public void setVentas(ItemesVenta ventas) {
 		this.ventas = ventas;
-	}
-
-	@Override
-	public void decode(DataInputStream inputStream) {
-		encabezado.decode(inputStream);
-		ventas.decode(inputStream);
-	}
-
-	@Override
-	public byte[] encode() {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream outputStream = new DataOutputStream(baos);
-		try {
-			outputStream.write(encabezado.encode());
-			outputStream.write(ventas.encode());
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		byte[] buffer = baos.toByteArray();
-		return buffer;
 	}
 
 	/**

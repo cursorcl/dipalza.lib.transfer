@@ -127,6 +127,7 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter {
 
     public void run() {
         while ((this.alive) && (this.objectIntput != null))
+        {
             try {
                 Object obj = this.objectIntput.readObject();
                 if (obj instanceof MessageToTransmit) {
@@ -136,23 +137,31 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter {
                     processData(null);
                 }
             } catch (IOException ex) {
-                ex.printStackTrace();
-                this.alive = false;
+            	ex.printStackTrace();
+            	this.alive = false;
+            	/*
                 log.error("Conexión cerrada  desde el cliente.");
                 log.fatal(ex.getLocalizedMessage());
                 for (StackTraceElement stEl : ex.getStackTrace()) {
                     log.fatal(stEl.toString());
                 }
+                */
             } catch (ClassNotFoundException e) {
             	e.printStackTrace();
-                this.alive = false;
-                log.error("Conexión cerrada  desde el cliente.");
-                log.fatal(e.getLocalizedMessage());
-                for (StackTraceElement stEl : e.getStackTrace()) {
+            	this.alive = false;
+                /*
+                 log.error("Conexión cerrada  desde el cliente.");
+                 log.fatal(e.getLocalizedMessage());
+                 for (StackTraceElement stEl : e.getStackTrace()) {
                     log.fatal(stEl.toString());
-                }
-                //e.printStackTrace();
+                 }
+                 */
             }
+	        try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+			}
+        }
     }
 
     private void start() {

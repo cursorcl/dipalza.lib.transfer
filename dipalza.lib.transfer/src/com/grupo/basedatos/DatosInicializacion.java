@@ -1,37 +1,19 @@
 package com.grupo.basedatos;
 
-import com.grupo.basedatos.itfz.ADatosBasicos;
-import com.grupo.exception.DiaSemanaInvalido;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.TimeZone;
+
+import com.grupo.basedatos.itfz.ADatosBasicos;
+import com.grupo.exception.DiaSemanaInvalido;
 
 @SuppressWarnings("serial")
 public class DatosInicializacion extends ADatosBasicos
 {
-  /**
- * @uml.property  name="vendedor"
- */
 private String vendedor;
-  /**
- * @uml.property  name="rutas"
- */
 private String[] rutas = new String[7];
 
-  /**
- * @uml.property  name="iva"
- */
 private float iva = 19.0F;
-  /**
- * @uml.property  name="ila"
- */
 private float ila = 14.0F;
-  /**
- * @uml.property  name="ip"
- */
 private String ip = "192.168.0.2";
 
   public DatosInicializacion()
@@ -49,25 +31,6 @@ private String ip = "192.168.0.2";
     this.ip = "192.168.0.2";
   }
 
-  public void decode(DataInputStream inputStream)
-  {
-    try
-    {
-      this.vendedor = inputStream.readUTF();
-      this.rutas[0] = inputStream.readUTF();
-      this.rutas[1] = inputStream.readUTF();
-      this.rutas[2] = inputStream.readUTF();
-      this.rutas[3] = inputStream.readUTF();
-      this.rutas[4] = inputStream.readUTF();
-      this.rutas[5] = inputStream.readUTF();
-      this.rutas[6] = inputStream.readUTF();
-      this.ip = inputStream.readUTF();
-      this.iva = inputStream.readFloat();
-      this.ila = inputStream.readFloat();
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-  }
 
   public String toString()
   {
@@ -75,41 +38,13 @@ private String ip = "192.168.0.2";
       " " + this.rutas[3] + " " + this.rutas[4] + " " + this.rutas[5] + " " + this.rutas[6];
   }
 
-  public byte[] encode() {
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    DataOutputStream outputStream = new DataOutputStream(baos);
-    try {
-      outputStream.writeUTF(this.vendedor);
-      outputStream.writeUTF(this.rutas[0]);
-      outputStream.writeUTF(this.rutas[1]);
-      outputStream.writeUTF(this.rutas[2]);
-      outputStream.writeUTF(this.rutas[3]);
-      outputStream.writeUTF(this.rutas[4]);
-      outputStream.writeUTF(this.rutas[5]);
-      outputStream.writeUTF(this.rutas[6]);
-      outputStream.writeUTF(this.ip);
-      outputStream.writeFloat(this.iva);
-      outputStream.writeFloat(this.ila);
-    }
-    catch (IOException ioe) {
-      ioe.printStackTrace();
-    }
-    byte[] buffer = baos.toByteArray();
-    return buffer;
-  }
-
-  /**
- * @return
- * @uml.property  name="vendedor"
- */
+ 
+ 
 public String getVendedor() {
     return this.vendedor;
   }
 
-  /**
- * @param vendedor
- * @uml.property  name="vendedor"
- */
+ 
 public void setVendedor(String vendedor) {
     this.vendedor = vendedor;
   }

@@ -1,12 +1,9 @@
 package com.grupo.basedatos;
 
+import java.util.Date;
+
 import com.grupo.basedatos.itfz.ADatosBasicos;
 import com.grupo.utilitarios.FechaFormateada;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.Date;
 
 public class EncabezadoVenta extends ADatosBasicos {
 	private static final long serialVersionUID = 1L;
@@ -36,41 +33,7 @@ public class EncabezadoVenta extends ADatosBasicos {
 		this("", "", new Date(), (byte) 0, 0.0F, 0.0F, "000", "");
 	}
 
-	public void decode(DataInputStream inputStream) {
-		try {
-			this.nombreCliente = inputStream.readUTF();
-			this.rut = inputStream.readUTF();
-			this.fecha = new FechaFormateada(inputStream.readLong());
-			this.condicionVenta = inputStream.readByte();
-			this.neto = inputStream.readFloat();
-			this.porcentajeIva = inputStream.readFloat();
-			this.vendedor = inputStream.readUTF();
-			this.droped = inputStream.readBoolean();
-			this.codigoCliente = inputStream.readUTF();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public byte[] encode() {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream outputStream = new DataOutputStream(baos);
-		try {
-			outputStream.writeUTF(this.nombreCliente);
-			outputStream.writeUTF(this.rut);
-			outputStream.writeLong(this.fecha.getTime());
-			outputStream.writeByte(this.condicionVenta);
-			outputStream.writeFloat(this.neto);
-			outputStream.writeFloat(this.porcentajeIva);
-			outputStream.writeUTF(this.vendedor);
-			outputStream.writeBoolean(this.droped);
-			outputStream.writeUTF(this.codigoCliente);
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		byte[] buffer = baos.toByteArray();
-		return buffer;
-	}
+	
 
 	/**
 	 * @return
