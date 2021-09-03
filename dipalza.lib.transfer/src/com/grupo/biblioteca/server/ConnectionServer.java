@@ -27,16 +27,19 @@ public class ConnectionServer extends Notifier implements Runnable, Notificable 
   private boolean alive = true;
   private String bind = "127.0.0.1";
   private String eth = "eth0";
+  private String port = "5502";
 
   public ConnectionServer(Properties props) {
     bind = props.getProperty("bind", bind);
     eth = props.getProperty("eth", eth);
+    port = props.getProperty("severport", port);
+    
     start();
   }
 
   public void run() {
     InetAddress thisIp = null;
-    log.debug("Inicializando puerta 5500");
+    log.debug("Inicializando puerta " + port);
     try {
 
       Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
@@ -58,15 +61,15 @@ public class ConnectionServer extends Notifier implements Runnable, Notificable 
         thisIp = InetAddress.getByName(bind);
       }
 
-      this.serverSocket = new ServerSocket(5500, 5, thisIp);
+      this.serverSocket = new ServerSocket(Integer.parseInt(port), 5, thisIp);
       notify(new ConnectionServerEvent(this, serverSocket)); // Notificamos la conexion
-      log.debug("Escuchando puesrta 5500.");
+      log.debug("Escuchando puerta " + port);
     } catch (IOException ex) {
       ex.printStackTrace();
     }
     while (this.alive)
       try {
-        log.debug("Esperando conexión " + thisIp.toString() + ":5500.");
+        log.debug("Esperando conexión " + thisIp.toString() + ":" + port);
         this.clientSocket = this.serverSocket.accept();
         notify(new ConnectionClientEvent(this, new ConnectionClient(this.clientSocket, this)));
         log.debug("Cliente conectado desde " + this.clientSocket.getInetAddress().toString() + ".");

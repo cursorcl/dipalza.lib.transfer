@@ -1,5 +1,6 @@
 package com.grupo.biblioteca.server;
 
+import com.grupo.biblioteca.EMessagesTypes;
 import com.grupo.biblioteca.IEmmiter;
 import com.grupo.biblioteca.MessageToTransmit;
 import com.grupo.biblioteca.server.events.MessagesClientEvent;
@@ -44,7 +45,7 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter {
         addNotificable(notificable);
         try {
             this.alive = false;
-            this.socketClient = new Socket(ip, 5500);
+            this.socketClient = new Socket(ip, 5501);
             this.objectOutput = new ObjectOutputStream(this.socketClient.getOutputStream());
             this.objectIntput = new ObjectInputStream(this.socketClient.getInputStream());
             start();
@@ -120,6 +121,15 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter {
             case MSG_VECTORVENTAS:
                 notify(new MessagesClientEvent(msg.getType(), msg));
                 break;
+            case MSG_FINALIZED:
+				try {
+	                MessageToTransmit finish = new MessageToTransmit();
+	                finish.setIdPalm(msg.getIdPalm());
+	                finish.setType(EMessagesTypes.MSG_FINALIZED);
+					this.objectOutput.writeObject(finish);
+				} catch (IOException e) {
+
+				}
             default:
                 notify(null);
         }
@@ -131,31 +141,19 @@ public class ConnectionClient extends Notifier implements Runnable, IEmmiter {
             try {
                 Object obj = this.objectIntput.readObject();
                 if (obj instanceof MessageToTransmit) {
+                	log.info("Llega un MessageToTransmit:" + ((MessageToTransmit) obj).getType().getName());
                     processData((MessageToTransmit) obj);
-                } else {
+                } 
+                else {
                     log.error("Llega algo que no es un MessageToTransmit");
                     processData(null);
                 }
             } catch (IOException ex) {
-            	ex.printStackTrace();
             	this.alive = false;
-            	/*
-                log.error("Conexión cerrada  desde el cliente.");
-                log.fatal(ex.getLocalizedMessage());
-                for (StackTraceElement stEl : ex.getStackTrace()) {
-                    log.fatal(stEl.toString());
-                }
-                */
+            	log.info("Conexión cerrada  desde el cliente.");
             } catch (ClassNotFoundException e) {
-            	e.printStackTrace();
+            	log.info("Conexión cerrada  desde el cliente.");
             	this.alive = false;
-                /*
-                 log.error("Conexión cerrada  desde el cliente.");
-                 log.fatal(e.getLocalizedMessage());
-                 for (StackTraceElement stEl : e.getStackTrace()) {
-                    log.fatal(stEl.toString());
-                 }
-                 */
             }
 	        try {
 				Thread.sleep(100);
